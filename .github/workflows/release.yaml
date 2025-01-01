@@ -491,6 +491,10 @@ jobs:
       - name: Set Version
         shell: bash
         run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_ENV
+      - uses: listendev/action@v0.14.1
+        with:
+          jwt: ${{ secrets.LSTN_API_KEY }}
+          runtime: only
       - run: |
           ./scripts/build_linux.sh
       - uses: actions/upload-artifact@v4
@@ -535,6 +539,10 @@ jobs:
           sudo usermod -aG docker $USER
           sudo apt-get install acl
           sudo setfacl --modify user:$USER:rw /var/run/docker.sock
+      - uses: listendev/action@v0.14.1
+        with:
+          jwt: ${{ secrets.LSTN_API_KEY }}
+          runtime: only
       - run: |
           ./scripts/build_linux.sh
       - uses: actions/upload-artifact@v4
@@ -596,6 +604,10 @@ jobs:
           echo GOFLAGS="'-ldflags=-w -s \"-X=github.com/ollama/ollama/version.Version=${{ env.DOCKER_METADATA_OUTPUT_VERSION }}\" \"-X=github.com/ollama/ollama/server.mode=release\"'" >>$GITHUB_ENV
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - uses: listendev/action@v0.14.1
+        with:
+          jwt: ${{ secrets.LSTN_API_KEY }}
+          runtime: only
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -742,6 +754,10 @@ jobs:
           path: dist
           pattern: dist-*
           merge-multiple: true
+      - uses: listendev/action@v0.14.1
+        with:
+          jwt: ${{ secrets.LSTN_API_KEY }}
+          runtime: only
       - run: |
           ls -lh dist/
           (cd dist; find . -type f | xargs sha256sum > ../sha256sum.txt)
