@@ -223,6 +223,12 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
+
+      
+      - uses: listendev/action@v0.14.1
+        with:
+          jwt: ${{ secrets.LSTN_API_KEY }}
+          runtime: only
       - name: Add msys paths
         if: ${{ startsWith(matrix.os, 'windows-') }}
         run: |
@@ -309,6 +315,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+      - uses: listendev/action@v0.14.1
+        with:
+          jwt: ${{ secrets.LSTN_API_KEY }}
+          runtime: only
       - name: Add msys paths
         if: ${{ startsWith(matrix.os, 'windows-') }}
         run: |
