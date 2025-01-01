@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# Ollama
+# Ollamatest
 
 [![Discord](https://dcbadge.vercel.app/api/server/ollama?style=flat&compact=true)](https://discord.gg/ollama)
 
